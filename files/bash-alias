@@ -1,0 +1,288 @@
+# STARTFGCOLOR="\[\e[0;36m\]";
+# STARTBGCOLOR=""  #"\e[47m"
+# ENDCOLOR="\[\e[0m\]"
+# export PS1="$STARTFGCOLOR$STARTBGCOLOR\u@\w>$ENDCOLOR "
+
+export PATH=$PATH:/home/onrack/utils:/home/onrack/src/on-tools/node_modules/.bin:/home/onrack/npm/bin:/home/onrack/src/.npm/bin:/home/onrack/src/on-tools/node_modules/.bin
+export SRCONRACK=/home/onrack/src
+cd $SRCONRACK
+
+export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist
+
+# if [ -n "$DISPLAY" -a "$TERM" == "xterm" ]; then
+#     export TERM=xterm-256color
+# fi
+
+# git alias
+alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit -n10"
+alias glg="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gs="git status"
+alias gm="git commit -m "
+alias gd="git diff --color"
+alias gdc="git diff --cached"
+alias gb="git branch"
+alias glog="git log"
+alias ga="git add"
+alias gr="git rm"
+alias gpo="git push origin"
+alias gfu="git fetch upstream"
+alias gc="git checkout"
+
+#onrack alias
+alias ni="sudo node index.js --color"
+alias nid="sudo node --debug index.js --color"
+alias mt="mocha \$(find spec -name '*-spec.js') -R spec --require spec/helper.js"
+alias jc="jshint -c .jshintrc lib index.js"
+alias mst="sudo /opt/onrack/bin/monorail status"
+alias ms="sudo /opt/onrack/bin/monorail restart"
+alias mp="sudo /opt/onrack/bin/monorail stop && sudo service isc-dhcp-server start"
+
+#general alias
+alias la="ls -alh"
+alias c="clear"
+alias l="ls"
+alias less="less -R"
+alias v="vim"
+alias ~="cd ~"
+alias .="cd .."
+alias ..="cd ../.."
+alias ...="cd ../../.."
+alias ....="cd ../../../.."
+alias mproc="ps -aux | grep index"
+alias apti="sudo apt-get install"
+alias apts="apt-cache search"
+alias h="history"
+alias jcd="jshint .jshintrc \$(git diff --name-only)"
+alias jcdc="jshint .jshintrc \$(git diff --name-only --cached)"
+
+#open file alias
+alias vnet="vim /etc/network/interfaces"
+alias vsmb="vim /etc/samba/smb.conf"
+alias vdhcp="vim /var/lib/dhcp/dhcpd.leases"
+alias vbash="vim ~/.mybash"
+alias sbash="source ~/.bashrc"
+alias valias="vim ~/.alias"
+alias salias="source ~/.alias"
+alias vvim="vim ~/.vimrc"
+alias vv="vim ~/.vimrc"
+alias lap="sudo vim /var/log/apache2/error.log"
+alias lhttp="sudo vim /var/log/upstart/on-http.log"
+alias lgraph="sudo vim /var/log/upstart/on-taskgraph.log"
+alias lgf="sudo vim /var/log/upstart/on-taskgraph.log"
+alias ltftp="sudo vim /var/log/upstart/on-tftp.log"
+alias ldhcp="sudo vim /var/log/upstart/on-dhcp-proxy.log"
+alias lcond="sudo vim /var/log/upstart/onrack-conductor.log"
+
+#change directory alias
+alias cd-="cd -"
+alias cd.="cd .."
+alias cd..="cd .."
+alias cdcore="cd ~/src/on-core"
+alias cdtask="cd ~/src/on-tasks"
+alias cdjob="cd ~/src/on-tasks/lib/jobs"
+# cd to task definition
+alias cdtd="cd ~/src/on-tasks/lib/task-data/tasks"
+alias cdbt="cd ~/src/on-tasks/lib/task-data/base-tasks"
+# cd to base task definition
+alias cdtb="cd ~/src/on-tasks/lib/task-data/base-tasks"
+alias cdgraph="cd ~/src/on-taskgraph"
+alias cdgf="cd ~/src/on-taskgraph"
+alias cdhttp="cd ~/src/on-http"
+alias cdserve="cd ~/src/onserve"
+alias cdse=" cd ~/src/onserve"
+alias cdtftp="cd ~/src/on-tftp"
+alias cddhcp="cd ~/src/on-dhcp-proxy"
+alias cdnet="cd /etc/network"
+alias cdvim="cd ~/.vim/bundle"
+alias cddata="cd ~/data"
+alias cdrack="cd /opt/onrack"
+alias cdre="cd /var/renasar"
+alias cdlog="cd /var/log/upstart"
+alias cdprf="cd /var/renasar/on-http/data/profiles"
+alias cdtpl="cd /var/renasar/on-http/data/templates"
+alias cdst="cd /var/renasar/on-http/static/http"
+alias cdtest="cd ~/src/RackHD/test"
+
+#vim open project
+alias vcore="cdcore && vim ~/src/on-core/index.js"
+alias vdhcp="cddhcp && vim ~/src/on-dhcp-proxy/index.js"
+alias vgraph="cdgraph && vim ~/src/on-taskgraph/index.js"
+alias vgf="cdgraph && vim ~/src/on-taskgraph/index.js"
+alias vhttp="cdhttp && vim ~/src/on-http/index.js"
+alias vtftp="cdftp && vim ~/src/on-tftp/index.js"
+alias vserve="cdserve && vim ~/src/onserve/onserve/views/redfish_0_96_0/views.py"
+alias vse="vserve"
+alias vtask="cdtask && vim ~/src/on-tasks/index.js"
+alias vtest="cdtest && vim /home/onrack/src/RackHD/test/run.py"
+
+#service
+alias sdhcp="sudo service on-dhcp-proxy restart"
+alias sdhcpp="sudo service on-dhcp-proxy stop"
+alias shttpp="sudo service on-http stop"
+alias shttp="sudo service on-http restart"
+alias sgf="sudo service on-taskgraph restart"
+alias sgfp="sudo service on-taskgraph stop"
+alias sgraph="sudo service on-taskgraph restart"
+alias sgraphp="sudo service on-taskgraph stop"
+alias stftp="sudo service on-tftp restart"
+alias stftpp="sudo service on-tftp stop"
+alias smos="sudo /opt/onrack/bin/monorail status"
+alias smo="sudo /opt/onrack/bin/monorail restart"
+alias smop="sudo /opt/onrack/bin/monorail stop"
+alias sserve="sudo service onrack-conductor restart && sudo service apache2 restart"
+alias sse="sudo service onrack-conductor restart && sudo service apache2 restart"
+alias ssep="sudo service onrack-conductor stop"
+alias sservep="sudo service onrack-conductor stop"
+
+#foreman
+alias nfs="nf -j /home/onrack/Procfile -e /home/onrack/.env start"
+alias nfmajor="nf -j $SRCONRACK/on-tools/foreman/major-services-procfile -e $SRCONRACK/on-tools/foreman/.env start"
+alias nfminor="nf -j $SRCONRACK/on-tools/foreman/minor-services-procfile -e $SRCONRACK/on-tools/foreman/.env start"
+alias nfhttp="nf -j $SRCONRACK/on-tools/foreman/http-procfile -e $SRCONRACK/on-tools/foreman/.env start"
+alias nfgraph="nf -j $SRCONRACK/on-tools/foreman/graph-procfile -e $SRCONRACK/on-tools/foreman/.env start"
+alias nfdhcp="nf -j $SRCONRACK/on-tools/foreman/dhcp-procfile -e $SRCONRACK/on-tools/foreman/.env start"
+alias nfsyslog="nf -j $SRCONRACK/on-tools/foreman/syslog-procfile -e $SRCONRACK/on-tools/foreman/.env start"
+alias nftftp="nf -j $SRCONRACK/on-tools/foreman/tftp-procfile -e $SRCONRACK/on-tools/foreman/.env start"
+alias nfma="nfmajor"
+alias nfhttpgf="nfmajor"
+alias nfni="nfminor"
+alias nfgf="nfgraph"
+
+#find port
+function fp() {
+    sudo netstat -apn | grep $1
+}
+
+function ipmi() {
+    ipmitool -I lanplus -U $1 -P $2 -H $3 $4 $5 $6 $7 $8 $9
+}
+
+#ipmicommand for vbmc
+function vipmi() {
+    ipmitool -I lanplus -U admin -P admin -H 172.31.128.$1 $2 $3 $4 $5 $6 $7 $8 $9
+}
+
+function vchassis() {
+    ipmitool -I lanplus -U admin -P admin -H 172.31.128.$1 chassis $2 $3 $4 $5 $6
+}
+
+function vpxe() {
+    ipmitool -I lanplus -U admin -P admin -H 172.31.128.$1 chassis bootdev pxe
+}
+
+function von() {
+    ipmitool -I lanplus -U admin -P admin -H 172.31.128.$1 chassis power on
+}
+
+function voff() {
+    ipmitool -I lanplus -U admin -P admin -H 172.31.128.$1 chassis power off
+}
+
+function vreboot() {
+    ipmitool -I lanplus -U admin -P admin -H 172.31.128.$1 chassis power cycle
+}
+
+function vcycle() {
+    ipmitool -I lanplus -U admin -P admin -H 172.31.128.$1 chassis power cycle
+}
+
+function lkp() {
+    http http://localhost:8080/api/common/lookups?q=$1
+}
+
+function m() {
+    if [ $# -ge 2 ]
+    then
+      if [ $1 == post ]
+      then
+        http POST http://localhost:8080/api/common/$2 $3 $4 $5 $6 $7 $8 | prettyjson
+      else
+        http $1 http://localhost:8080/api/common/$2 $3 $4 $5 $6 $7 $8 | prettyjson
+
+      fi
+    else
+        http -b http://localhost:8080/api/common/$1 $2 $3 $4 $5 $6 | prettyjson
+    fi
+}
+
+function mpost() {
+    http POST http://localhost:8080/api/common/$1 < $2 $3 $4 $5 $6 $7 $8 | prettyjson
+}
+
+function mput() {
+    http PUT http://localhost:8080/api/common/$1 < $2 $3 $4 $5 $6 $7 $8 | prettyjson
+}
+
+function mdel() {
+    http DELETE http://localhost:8080/api/common/$1 $2 $3 $4 $5 $6 $7 $8 | prettyjson
+}
+
+function o() {
+    echo http GET https://localhost/rest/v1/$1 Authentication-Token:$2 $3 $4 $5 $6 $7 $8 $9 -b --verify=no
+    http GET https://localhost/rest/v1/$1 Authentication-Token:$2 $3 $4 $5 $6 $7 $8 $9 -b --verify=no | prettyjson
+}
+
+function opost() {
+    echo http POST https://localhost/rest/v1/$1 Authentication-Token:$2 $3 $4 $5 $6 $7 $8 $9 -b --verify=no
+    http POST https://localhost/rest/v1/$1 Authentication-Token:$2 $3 $4 $5 $6 $7 $8 $9 --verify=no | prettyjson
+}
+
+function oauth() {
+    http POST https://localhost/login email=admin password=admin123 $1 $2 $3 $4 $5 $6 --verify=no | prettyjson
+}
+
+function vtun() {
+    echo create tunnel for 172.31.128.$1 on port 5901
+    socat -d -d TCP4-LISTEN:5901,reuseaddr,fork TCP4:172.31.128.$1:5901
+}
+
+function tun() {
+    echo craete tunnel from port $1 to port $2
+    sudo socat -d -d TCP4-LISTEN:$2,reuseaddr,fork TCP4:127.0.0.1:$1
+}
+
+function reposync() {
+    USAGE="Usage: $0 repository-name"
+    if [ $# == 0 ]; then
+        echo "$USAGE"
+        exit 1
+    fi
+
+#    while (( $# )); do
+        # repo = $1
+        # if [ $1 == serve ]; then
+        #      repo = "on$1"
+        # else
+        #      repo = "on-$1"
+        # fi
+        # echo "repo=$repo"
+        #
+        echo "syncing repository $1 ..."
+        cd ~/src/$1
+        # if [ $1 == serve ]; then
+        #     cd ~/src/on$1
+        # else
+        #     cd ~/src/on-$1
+        # fi
+
+        #cd ~/src/$repo
+        git checkout master
+        git fetch upstream
+        git merge upstream/master
+        git push origin master
+        echo "syncing repository done."
+#    shift
+#    done
+}
+
+function ut() {
+    mocha $1 -R spec --require spec/helper.js
+}
+
+function sor() {
+    ssh onrack@s$1.or
+}
+
+function ss() {
+    ssh onrack@$1
+}
