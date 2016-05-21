@@ -1,10 +1,10 @@
 [user]
-	email = felix.yuan@emc.com
-	name = Felix Yuan
+    email = felix.yuan@emc.com
+    name = Felix Yuan
 [core]
-	exculdesfile = /home/onrack/.gitignore-global
-	editor = vim
+    exculdesfile = ~/.gitignore-global
+    editor = vim
 [url "https://yyscamper@github.com"]
-	insteadOf = https://github.com
+    insteadOf = https://github.com
 [credential]
-	helper = cache --timeout=144000
+    helper = cache --timeout=144000
