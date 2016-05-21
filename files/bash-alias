@@ -3,15 +3,7 @@
 # ENDCOLOR="\[\e[0m\]"
 # export PS1="$STARTFGCOLOR$STARTBGCOLOR\u@\w>$ENDCOLOR "
 
-export PATH=$PATH:/home/onrack/utils:/home/onrack/src/on-tools/node_modules/.bin:/home/onrack/npm/bin:/home/onrack/src/.npm/bin:/home/onrack/src/on-tools/node_modules/.bin
-export SRCONRACK=/home/onrack/src
-cd $SRCONRACK
-
-export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/dist
-
-# if [ -n "$DISPLAY" -a "$TERM" == "xterm" ]; then
-#     export TERM=xterm-256color
-# fi
+export PATH=$PATH:~/src/npm/bin
 
 # git alias
 alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit -n10"
