@@ -9,4 +9,6 @@ mv ~/.$file $bakdir/.$file
 ln -s $dir/files/$file ~/.$file
 done
 
+echo "source ~/.bash-alias" >> ~/.bashrc
+
 
