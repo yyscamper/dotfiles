@@ -127,18 +127,7 @@ alias ssep="sudo service onrack-conductor stop"
 alias sservep="sudo service onrack-conductor stop"
 
 #foreman
-alias nfs="nf -j /home/onrack/Procfile -e /home/onrack/.env start"
-alias nfmajor="nf -j $SRCONRACK/on-tools/foreman/major-services-procfile -e $SRCONRACK/on-tools/foreman/.env start"
-alias nfminor="nf -j $SRCONRACK/on-tools/foreman/minor-services-procfile -e $SRCONRACK/on-tools/foreman/.env start"
-alias nfhttp="nf -j $SRCONRACK/on-tools/foreman/http-procfile -e $SRCONRACK/on-tools/foreman/.env start"
-alias nfgraph="nf -j $SRCONRACK/on-tools/foreman/graph-procfile -e $SRCONRACK/on-tools/foreman/.env start"
-alias nfdhcp="nf -j $SRCONRACK/on-tools/foreman/dhcp-procfile -e $SRCONRACK/on-tools/foreman/.env start"
-alias nfsyslog="nf -j $SRCONRACK/on-tools/foreman/syslog-procfile -e $SRCONRACK/on-tools/foreman/.env start"
-alias nftftp="nf -j $SRCONRACK/on-tools/foreman/tftp-procfile -e $SRCONRACK/on-tools/foreman/.env start"
-alias nfma="nfmajor"
-alias nfhttpgf="nfmajor"
-alias nfni="nfminor"
-alias nfgf="nfgraph"
+alias nfs="nf -j ~/Procfile -e ~/.env start"
 
 #find port
 function fp() {
