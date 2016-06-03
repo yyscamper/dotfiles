@@ -1,0 +1,21 @@
+{
+    "libs": [
+        "ecma5",
+        "chai",
+        "/home/yuanf/personal/dotfiles/tern-files/defs/lodash"
+    ],
+    "loadEagerly": [
+        "~/src/on-core/lib/di.js",
+        "~/personal/dotfiles/tern-files/*.js"
+    ],
+    "plugins": {
+        "node": {},
+        "requirejs": {
+            "baseURL": "/home/yuanf/personal/dotfiles/tern-files/",
+            "paths": {
+            }
+        },
+        "modules": {},
+        "angular": {}
+    }
+}

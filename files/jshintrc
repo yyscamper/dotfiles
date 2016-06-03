@@ -61,6 +61,8 @@
 
     //Custom Globals
     "globals" : {
+        "_": false,
+        "Promise": false,
         "describe": false,
         "it": false,
         "before": false,
