@@ -15,7 +15,7 @@
             "paths": {
             }
         },
-        "modules": {},
+        "commonjs", {},
         "angular": {}
     }
 }

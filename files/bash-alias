@@ -129,6 +129,12 @@ alias sservep="sudo service onrack-conductor stop"
 #foreman
 alias nfs="nf -j ~/Procfile -e ~/.env start"
 
+#tmux
+alias tmux="tmux -2"
+
+#pm2
+alias pmrackhd="sudo pm2 ~/src/rackhd-services.yml"
+
 #find port
 function fp() {
     sudo netstat -apn | grep $1
