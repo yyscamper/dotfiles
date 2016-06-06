@@ -1,5 +1,23 @@
 tmux Cheat Sheet
 
+## Build & Install tmux
+1. Download source from https://tmux.github.io/
+2. Install extra packages:
+```
+sudo apt-get install exuberant-ctags cmake libevent-dev libncurses5-dev
+```
+3. build & install
+```
+./configure
+make
+sudo make install
+```
+tmux will be installed to /usr/local/bin/tmux
+4. Check version
+```
+tmux -V
+```
+
 ## Prefix
 Ctrl + b
 
