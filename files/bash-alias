@@ -4,6 +4,7 @@
 # export PS1="$STARTFGCOLOR$STARTBGCOLOR\u@\w>$ENDCOLOR "
 
 export PATH=$PATH:~/src/npm/bin
+export TERM="screen-256color"
 
 # git alias
 alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit -n10"
