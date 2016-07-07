@@ -62,6 +62,15 @@ Ctrl + b
 | x      | Close pane
 | J/K/H/L | Resize current pane
 
+# Copy Mode
+| Hotkey | Command | Function |
+|:------:|:-------:|:--------|
+| [      |           | Enter copy mode
+| PgUp   |           | Enter copy mode and scroll one page up
+| q      |           | Quit from copy mode
+| /      |           | Search forward
+| ?      |           | Search backward
+
 # Misc
 | Hotkey | Command | Function |
 |:------:|:-------:|:--------|
