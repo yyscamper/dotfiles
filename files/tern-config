@@ -2,7 +2,7 @@
     "libs": [
         "ecma5",
         "chai",
-        "/home/yuanf/personal/dotfiles/tern-files/defs/lodash"
+        "~/dotfiles/tern-files/defs/lodash.json"
     ],
     "loadEagerly": [
         "~/src/on-core/lib/di.js",
@@ -11,7 +11,7 @@
     "plugins": {
         "node": {},
         "requirejs": {
-            "baseURL": "/home/yuanf/personal/dotfiles/tern-files/",
+            "baseURL": "~/dotfiles/tern-files/",
             "paths": {
             }
         },
