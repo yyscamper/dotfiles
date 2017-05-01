@@ -3,6 +3,7 @@
 # ENDCOLOR="\[\e[0m\]"
 # export PS1="$STARTFGCOLOR$STARTBGCOLOR\u@\w>$ENDCOLOR "
 
+stty -ixon
 export PATH=$PATH:~/src/npm/bin
 export TERM="screen-256color"
 
@@ -20,6 +21,7 @@ alias gr="git rm"
 alias gpo="git push origin"
 alias gfu="git fetch upstream"
 alias gc="git checkout"
+alias grma="git rm $(git ls-files --deleted)"
 
 #onrack alias
 alias ni="sudo node index.js --color"
@@ -78,23 +80,29 @@ alias cdtd="cd ~/src/on-tasks/lib/task-data/tasks"
 alias cdbt="cd ~/src/on-tasks/lib/task-data/base-tasks"
 # cd to base task definition
 alias cdtb="cd ~/src/on-tasks/lib/task-data/base-tasks"
+alias cdschema="cd ~/src/on-tasks/lib/task-data/schemas"
+alias cdschemaspec="cd ~/src/on-tasks/spec/lib/task-data/schemas"
 alias cdgraph="cd ~/src/on-taskgraph"
 alias cdgf="cd ~/src/on-taskgraph"
 alias cdhttp="cd ~/src/on-http"
-alias cdserve="cd ~/src/onserve"
-alias cdse=" cd ~/src/onserve"
 alias cdtftp="cd ~/src/on-tftp"
 alias cddhcp="cd ~/src/on-dhcp-proxy"
+alias cdsyslog="cd ~/src/on-syslog"
 alias cdnet="cd /etc/network"
 alias cdvim="cd ~/.vim/bundle"
 alias cddata="cd ~/data"
 alias cdrack="cd /opt/onrack"
 alias cdre="cd /var/renasar"
 alias cdlog="cd /var/log/upstart"
-alias cdprf="cd /var/renasar/on-http/data/profiles"
-alias cdtpl="cd /var/renasar/on-http/data/templates"
-alias cdst="cd /var/renasar/on-http/static/http"
+alias cdprofile="cd ~/src/on-http/data/profiles"
+alias cdtemplates="cd ~/src/on-http/data/templates"
 alias cdtest="cd ~/src/RackHD/test"
+alias cddoc="cd ~/src/docs"
+alias cdrackhd="cd ~/src/RackHD"
+alias cdmodel="cd ~/src/on-core/lib/models"
+alias cdapi="cd ~/src/on-http/lib/api"
+alias cdapi11="cd ~/src/on-http/lib/api/1.1/northbound"
+alias cdapi2="cd ~/src/on-http/lib/api/2.0"
 
 #vim open project
 alias vcore="cdcore && vim ~/src/on-core/index.js"
@@ -102,7 +110,7 @@ alias vdhcp="cddhcp && vim ~/src/on-dhcp-proxy/index.js"
 alias vgraph="cdgraph && vim ~/src/on-taskgraph/index.js"
 alias vgf="cdgraph && vim ~/src/on-taskgraph/index.js"
 alias vhttp="cdhttp && vim ~/src/on-http/index.js"
-alias vtftp="cdftp && vim ~/src/on-tftp/index.js"
+alias vtftp="cdtftp && vim ~/src/on-tftp/index.js"
 alias vserve="cdserve && vim ~/src/onserve/onserve/views/redfish_0_96_0/views.py"
 alias vse="vserve"
 alias vtask="cdtask && vim ~/src/on-tasks/index.js"
@@ -129,6 +137,8 @@ alias sservep="sudo service onrack-conductor stop"
 
 #foreman
 alias nfs="nf -j ~/Procfile -e ~/.env start"
+
+alias pm2="sudo pm2"
 
 #tmux
 alias tmux="tmux -2"
@@ -175,7 +185,7 @@ function vcycle() {
 }
 
 function lkp() {
-    http http://localhost:8080/api/common/lookups?q=$1
+    http http://localhost:8080/api/2.0/lookups?q=$1
 }
 
 function m() {
@@ -183,40 +193,138 @@ function m() {
     then
       if [ $1 == post ]
       then
-        http POST http://localhost:8080/api/common/$2 $3 $4 $5 $6 $7 $8 | prettyjson
+        http POST http://localhost:8080/api/2.0/$2 $3 $4 $5 $6 $7 $8
       else
-        http $1 http://localhost:8080/api/common/$2 $3 $4 $5 $6 $7 $8 | prettyjson
+        http $1 http://localhost:8080/api/2.0/$2 $3 $4 $5 $6 $7 $8
 
       fi
     else
-        http -b http://localhost:8080/api/common/$1 $2 $3 $4 $5 $6 | prettyjson
+        http -b http://localhost:8080/api/2.0/$1 $2 $3 $4 $5 $6
     fi
 }
 
 function mpost() {
-    http POST http://localhost:8080/api/common/$1 < $2 $3 $4 $5 $6 $7 $8 | prettyjson
+    http POST http://localhost:8080/api/2.0/$1 < $2 $3 $4 $5 $6 $7 $8
 }
 
 function mput() {
-    http PUT http://localhost:8080/api/common/$1 < $2 $3 $4 $5 $6 $7 $8 | prettyjson
+    http PUT http://localhost:8080/api/2.0/$1 < $2 $3 $4 $5 $6 $7 $8
 }
 
 function mdel() {
-    http DELETE http://localhost:8080/api/common/$1 $2 $3 $4 $5 $6 $7 $8 | prettyjson
+    http DELETE http://localhost:8080/api/2.0/$1 $2 $3 $4 $5 $6 $7 $8
+}
+
+function nodes() {
+    if [ $# == 0 ]; then
+        http GET http://localhost:8080/api/2.0/nodes
+    else
+        http GET http://localhost:8080/api/2.0/nodes/$1
+    fi
+}
+
+function skus() {
+    if [ $# == 0 ]; then
+        http GET http://localhost:8080/api/2.0/skus
+    else
+        http GET http://localhost:8080/api/2.0/skus/$1
+    fi
+}
+
+function pollers() {
+    if [ $# == 0 ]; then
+        http GET http://localhost:8080/api/2.0/pollers
+    else
+        http GET http://localhost:8080/api/2.0/pollers/$1
+    fi
+}
+
+function rmnode() {
+    if [ $1 == 'all' ]; then
+    for nodeId in $(http :8080/api/2.0/nodes | jq '.[].id');do
+        nodeId=${nodeId//\"/}
+        echo deleting node $nodeId
+        http DELETE :8080/api/2.0/nodes/$nodeId
+        done
+    else
+        echo deleting node $1
+        http DELETE :8080/api/2.0/nodes/$1
+    fi
+}
+
+alias rmn="rmnode"
+
+function rmlookup() {
+    if [ $1 == 'all' ]; then
+    for id in $(http :8080/api/2.0/lookups | jq '.[].id');do
+        id=${id//\"/}
+        http DELETE :8080/api/2.0/lookups/$id
+        done
+    else
+        http DELETE :8080/api/2.0/lookups/$1
+    fi
+}
+alias rmlkp="rmlookup"
+
+function addobm() {
+    if [ $# != 4 ]; then
+        echo 'Invalid command, usage: addobm <nodeId> <ipmiHost> <ipmiUser> <ipmiPassword>'
+    else
+        echo Generating ipmi-obm-setting: nodeId=$1 BMC=$2 User=$3 Password=$4:
+        echo "{\"service\": \"ipmi-obm-service\", \"config\": { \"host\": \"$2\", \"user\": \"$3\", \"password\": \"$4\" }, \"nodeId\": \"$1\"}" | http PUT :8080/api/2.0/obms
+    fi
+}
+
+function runwf() {
+    if [ $# -lt 2 ]; then
+        echo 'Invalid command, runwf <nodeId> <graphName> [optionFileName]'
+    elif [ $# -eq 2 ]; then
+        echo Run workflow $2 at node $1 with no options.
+        http POST :8080/api/2.0/nodes/$1/workflows?name=$2
+    elif [ $# -eq 3 ]; then
+        echo Run workflow $2 at node $1 with option $3.
+        http POST :8080/api/2.0/nodes/$1/workflows?name=$2 < $3
+    fi
+}
+
+function actwf() {
+    if [ $# -lt 1 ]; then
+        echo 'Invalid command, actwf <nodeId>'
+    else
+        http :8080/api/2.0/nodes/$1/workflows?active=true
+    fi
+}
+
+function stopwf() {
+    if [ $# != 1 ]; then
+        echo 'Invalid command, stopwf <nodeId>'
+    else
+        echo stop the active workflow of node $1
+        http PUT :8080/api/2.0/nodes/$1/workflows/action command=cancel
+    fi
+}
+
+function stopwfraw() {
+    if [ $# != 1 ]; then
+        echo 'Invalid command, stopwfraw <graphInstanceId>'
+    else
+        echo stop the workflow with instanceId=$1
+        http PUT :8080/api/2.0/workflows/$1/action command=cancel
+    fi
 }
 
 function o() {
     echo http GET https://localhost/rest/v1/$1 Authentication-Token:$2 $3 $4 $5 $6 $7 $8 $9 -b --verify=no
-    http GET https://localhost/rest/v1/$1 Authentication-Token:$2 $3 $4 $5 $6 $7 $8 $9 -b --verify=no | prettyjson
+    http GET https://localhost/rest/v1/$1 Authentication-Token:$2 $3 $4 $5 $6 $7 $8 $9 -b --verify=no
 }
 
 function opost() {
     echo http POST https://localhost/rest/v1/$1 Authentication-Token:$2 $3 $4 $5 $6 $7 $8 $9 -b --verify=no
-    http POST https://localhost/rest/v1/$1 Authentication-Token:$2 $3 $4 $5 $6 $7 $8 $9 --verify=no | prettyjson
+    http POST https://localhost/rest/v1/$1 Authentication-Token:$2 $3 $4 $5 $6 $7 $8 $9 --verify=no
 }
 
 function oauth() {
-    http POST https://localhost/login email=admin password=admin123 $1 $2 $3 $4 $5 $6 --verify=no | prettyjson
+    http POST https://localhost/login email=admin password=admin123 $1 $2 $3 $4 $5 $6 --verify=no
 }
 
 function vtun() {

@@ -5,7 +5,6 @@
     "bitwise" : true,
     "camelcase" : true,
     "curly" : true,
-    "es3" : false,
     "eqeqeq" : true,
     "forin" : true,
     "freeze" : true,
@@ -34,8 +33,6 @@
     "boss" : false,
     "debug" : false,
     "eqnull" : false,
-    "es5" : false,
-    "esnext" : false,
     "moz" : false,
     "evil" : false,
     "expr" : true,     // true: Tolerate `ExpressionStatement` as Programs
@@ -58,6 +55,7 @@
 
     // Environments
     "node": true,
+    "esversion": 6,
 
     //Custom Globals
     "globals" : {
