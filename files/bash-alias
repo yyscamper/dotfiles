@@ -4,17 +4,32 @@
 #export PS1="$STARTFGCOLOR$STARTBGCOLOR\u@\w>$ENDCOLOR "
 
 stty -ixon
-export PATH=$PATH:~/src/npm/bin
+export PATH=$PATH:~/src/npm/bin:/Users/mdt/Applications/npm/bin
 export TERM="screen-256color"
+export GOROOT=/usr/local/Cellar/go/1.9.1/libexec
+# export TERM=
 
-valias="vim $HOME/.bash-alias"
-salias="source $HOME/.bash-alias"
+#old vim
+alias ovim='/usr/local/bin/vim'
+
+alias vim='nvim'
+alias valias="vim $HOME/.bash-alias"
+alias salias="source $HOME/.bash-alias"
+alias vzsh="vim $HOME/.zshrc"
+alias szsh="source $HOME/.zshrc"
 
 #MDT
 GOWORKSPACE=${HOME}/golang/workspace
+GOLIB=${HOME}/golang/lib
 alias vbeep="cd ${GOWORKSPACE}/src/beep && vim main.go"
+alias vd="cd ~/src/datamap && vim app.py"
+alias vp="cd ~/src/petal && vim petal.py"
+alias dm="cd ~/src/datamap"
 alias sshtb="ssh yuanyu@140.206.48.66"
+alias sshvm="ssh yuanyu@192.168.1.22"
 alias sshauto="ssh-add ~/.ssh/id_rsa"
+alias cdlogrus="cd ${GOLIB}/src/github.com/yyscamper/logrus"
+alias cdspew="cd ${GOLIB}/src/github.com/yyscamper/go-spew"
 
 # git alias
 alias gl="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit -n10"
@@ -29,6 +44,9 @@ alias ga="git add"
 alias gr="git rm"
 alias gpo="git push origin"
 alias gfu="git fetch upstream"
+alias gfo="git fetch origin"
+alias gru="git rebase upstream/master"
+alias gro="git rebase origin/master"
 alias gc="git checkout"
 alias grma="git rm $(git ls-files --deleted)"
 
@@ -48,6 +66,10 @@ alias l="ls"
 alias less="less -R"
 alias v="vim"
 alias ~="cd ~"
+alias df="df -kh"
+alias du="du -kh"
+alias mkdir="mkdir -p"
+
 # alias .="cd .."
 # alias ..="cd ../.."
 # alias ...="cd ../../.."
@@ -80,6 +102,8 @@ alias cd-="cd -"
 alias cd.="cd .."
 alias cd..="cd .."
 alias cdbeep="cd ~/golang/workspace/src/beep"
+alias cdgo="cd ~/golang/workspace/src/"
+alias cdgolib="cd ~/golang/lib/src/"
 
 #vim open project
 alias vcore="cdcore && vim ~/src/on-core/index.js"
@@ -359,3 +383,33 @@ function sor() {
 function ss() {
     ssh onrack@$1
 }
+
+func proxyon() {
+    export http_proxy=http://localhost:8123
+    export https_proxy=http://localhost:8123
+    export ftp_proxy=http://localhost:8123
+}
+
+func proxyoff() {
+    export http_proxy=
+    export https_proxy=
+    export ftp_proxy=
+}
+
+func homebrew_restore() {
+    cd "$(brew --repo)"
+    git remote set-url origin https://github.com/Homebrew/brew.git
+
+    cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
+    git remote set-url origin https://github.com/Homebrew/homebrew-core.git
+}
+
+func homebrew_setup() {
+    cd "$(brew --repo)"
+    git remote set-url origin https://mirrors.ustc.edu.cn/brew.git
+
+    cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
+    git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git
+}
+
+

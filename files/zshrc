@@ -51,7 +51,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump osx)
+plugins=(git autojump osx zsh-autosuggestions zsh-completions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -84,7 +84,15 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
+
+# autosuggest
+bindkey '^f' vi-forward-word
+bindkey '^b' vi-forward-blank-word
+bindkey '^e' vi-end-of-line
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
+
 source ~/.bash-alias
+source ~/.bash_profile
 
 alias zshrc="vim ~/.zshrc"
 alias szshrc="source ~/.zshrc"
@@ -106,3 +114,27 @@ export LESS_TERMCAP_se=$'\E[0m'           # end standout-mode
 export LESS_TERMCAP_so=$'\E[38;5;246m'    # begin standout-mode - info box
 export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
+
+export N_PREFIX="$HOME/Applications/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+
+# PATH="/Users/mdt/perl5/bin${PATH:+:${PATH}}"; export PATH;
+# PERL5LIB="/Users/mdt/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+# PERL_LOCAL_LIB_ROOT="/Users/mdt/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+# PERL_MB_OPT="--install_base \"/Users/mdt/perl5\""; export PERL_MB_OPT;
+# PERL_MM_OPT="INSTALL_BASE=/Users/mdt/perl5"; export PERL_MM_OPT;
+export PATH=$PATH:/Users/mdt/.gvm/bin:/Users/mdt/dev/oracle/instantclient_11_2
+export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/Users/mdt/dev/oracle/instantclient_11_2
+# export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
+
+export PATH="/usr/local/p/versions/python:$PATH"
+export BEEP_HOME="/Users/mdt/beep"
+export AIRFLOW_HOME="/Users/mdt/airflow"
+
+
+source ~/.shrc.common
+source ~/.shrc.os
+source ~/.shrc.mdt
+export PATH="/usr/local/opt/bison/bin:$PATH"
+source /usr/local/opt/autoenv/activate.sh
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+export PATH="/usr/local/opt/freetds@0.91/bin:$PATH"
