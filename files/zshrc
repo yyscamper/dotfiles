@@ -127,14 +127,17 @@ export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/Users/mdt/dev/oracle/instantclient_
 # export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
 
 export PATH="/usr/local/p/versions/python:$PATH"
-export BEEP_HOME="/Users/mdt/beep"
-export AIRFLOW_HOME="/Users/mdt/airflow"
 
-
+source ~/.bashrc
 source ~/.shrc.common
 source ~/.shrc.os
 source ~/.shrc.mdt
 export PATH="/usr/local/opt/bison/bin:$PATH"
 source /usr/local/opt/autoenv/activate.sh
+export PATH="/usr/local/opt/freetds@0.91/bin:/Users/mdt/Applications/npm/bin:$PATH"
+
+# change brew bottle source: https://lug.ustc.edu.cn/wiki/mirrors/help/brew.git
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
-export PATH="/usr/local/opt/freetds@0.91/bin:$PATH"
+
+# speedup brew install: https://apple.stackexchange.com/a/293252
+export HOMEBREW_NO_AUTO_UPDATE=1

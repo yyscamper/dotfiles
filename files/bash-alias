@@ -4,7 +4,7 @@
 #export PS1="$STARTFGCOLOR$STARTBGCOLOR\u@\w>$ENDCOLOR "
 
 stty -ixon
-export PATH=$PATH:~/src/npm/bin:/Users/mdt/Applications/npm/bin
+export PATH=$PATH:~/src/npm/bin:/Users/yuany/Applications/npm/bin
 export TERM="screen-256color"
 export GOROOT=/usr/local/Cellar/go/1.9.1/libexec
 # export TERM=
@@ -23,8 +23,12 @@ GOWORKSPACE=${HOME}/golang/workspace
 GOLIB=${HOME}/golang/lib
 alias vbeep="cd ${GOWORKSPACE}/src/beep && vim main.go"
 alias vd="cd ~/src/datamap && vim app.py"
+alias vd2="cd ~/src/datamap2 && vim app.py"
 alias vp="cd ~/src/petal && vim petal.py"
 alias dm="cd ~/src/datamap"
+alias dm2="cd ~/src/datamap2"
+alias pe="cd ~/src/petal"
+alias cdp="cd ~/src/petal"
 alias sshtb="ssh yuanyu@140.206.48.66"
 alias sshvm="ssh yuanyu@192.168.1.22"
 alias sshauto="ssh-add ~/.ssh/id_rsa"
@@ -383,33 +387,3 @@ function sor() {
 function ss() {
     ssh onrack@$1
 }
-
-func proxyon() {
-    export http_proxy=http://localhost:8123
-    export https_proxy=http://localhost:8123
-    export ftp_proxy=http://localhost:8123
-}
-
-func proxyoff() {
-    export http_proxy=
-    export https_proxy=
-    export ftp_proxy=
-}
-
-func homebrew_restore() {
-    cd "$(brew --repo)"
-    git remote set-url origin https://github.com/Homebrew/brew.git
-
-    cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
-    git remote set-url origin https://github.com/Homebrew/homebrew-core.git
-}
-
-func homebrew_setup() {
-    cd "$(brew --repo)"
-    git remote set-url origin https://mirrors.ustc.edu.cn/brew.git
-
-    cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
-    git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git
-}
-
-
