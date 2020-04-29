@@ -91,8 +91,7 @@ bindkey '^b' vi-forward-blank-word
 bindkey '^e' vi-end-of-line
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=10'
 
-source ~/.bash-alias
-source ~/.bash_profile
+export PATH="/usr/local/p/versions/python:$PATH:/Applications/Postgres.app/Contents/Versions/latest/bin"
 
 alias zshrc="vim ~/.zshrc"
 alias szshrc="source ~/.zshrc"
@@ -125,19 +124,20 @@ export N_PREFIX="$HOME/Applications/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || 
 export PATH=$PATH:/Users/mdt/.gvm/bin:/Users/mdt/dev/oracle/instantclient_11_2
 export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/Users/mdt/dev/oracle/instantclient_11_2
 # export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
-
-export PATH="/usr/local/p/versions/python:$PATH"
-
-source ~/.bashrc
-source ~/.shrc.common
-source ~/.shrc.os
-source ~/.shrc.mdt
 export PATH="/usr/local/opt/bison/bin:$PATH"
-source /usr/local/opt/autoenv/activate.sh
 export PATH="/usr/local/opt/freetds@0.91/bin:/Users/mdt/Applications/npm/bin:$PATH"
-
 # change brew bottle source: https://lug.ustc.edu.cn/wiki/mirrors/help/brew.git
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
 
 # speedup brew install: https://apple.stackexchange.com/a/293252
 export HOMEBREW_NO_AUTO_UPDATE=1
+
+source ~/.bash_profile
+source ~/.bashrc
+source ~/.shrc.common
+source ~/.bash-alias
+source ~/.shrc.os
+source ~/.shrc.mdt
+source /usr/local/opt/autoenv/activate.sh
+
+export PATH="/usr/local/opt/freetds@0.91/bin:$PATH"
